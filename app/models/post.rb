@@ -4,4 +4,9 @@ class Post < ActiveRecord::Base
   has_many :comments, dependent: :destroy
 
   validates_presence_of :user_id
+
+  def username
+    User.find(self.user_id).username
+  end
+  
 end

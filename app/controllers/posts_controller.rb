@@ -26,13 +26,17 @@ class PostsController < ApplicationController
   end
 
   def show
+    @post = Post.find(params[:id])
+    @comments = @post.comments
   end
 
   def index
   end
+  
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
+    redirect_to user_path(@post.user_id)
   end
 
   private

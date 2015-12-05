@@ -1,2 +1,17 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<h1><%= @post.ledge %></h1>
+<h3><%= link_to @post.username, user_path(@post.user_id) %> </h3>
+<hr />
+<% @comments.each do |comment| %>
+<p>
+  <%=comment.reply %> | |
+  <%= link_to 'Edit', edit_comment_path(comment.id) %> | |
+  <%= link_to 'Destroy', comment_path(comment.id), method: :delete %>
+</p>
+<p>
+  by:  <%= link_to comment.username, user_path(comment.user_id) %>
+</p>
+
+<br />
+<% end %>
+
+  <%= link_to 'Reply', new_comment_path(post_id: @post.id) %>
