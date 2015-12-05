@@ -20,7 +20,14 @@
       <%= f.text_area :appreciate %>
     </div>
 
-    <%= f.hidden_field :user_id, value: params[:user_id] %>
+    <% if @post.user_id != nil && @post.user_id > 0 %>
+        <%= f.hidden_field :user_id, :value => @post.user_id  %>
+    <%  else %>
+        <%= f.hidden_field :user_id, :value=> params[:user_id] %>
+    <% end %>
+
+
+
 
     <div class="actions">
       <%= f.submit %>

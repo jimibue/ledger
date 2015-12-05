@@ -3,8 +3,9 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
   def update
-    @post = Post.find(post_params)
-    if @post.update
+    # binding.pry
+    @post = Post.find(params[:id])
+    if @post.update(post_params)
       redirect_to user_path(@post.user_id)
     else
       render :new
@@ -15,7 +16,6 @@ class PostsController < ApplicationController
     @post = Post.new
   end
   def create
-
     # binding.pry
     @post = Post.new(post_params)
     if @post.save
@@ -29,6 +29,10 @@ class PostsController < ApplicationController
   end
 
   def index
+  end
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
   end
 
   private
