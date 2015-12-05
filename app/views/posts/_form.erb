@@ -1,0 +1,28 @@
+<% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+        <% @post.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
+<%= form_for(@post) do |f| %>
+
+    <div class="field">
+      <%= f.label :ledge %><br>
+      <%= f.text_area :ledge %>
+    </div>
+    <div class="field">
+      <%= f.label :appreciate %><br>
+      <%= f.text_area :appreciate %>
+    </div>
+
+    <%= f.hidden_field :user_id, value: params[:user_id] %>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>
